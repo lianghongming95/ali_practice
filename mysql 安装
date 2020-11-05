@@ -1,0 +1,16 @@
+步骤一：准备环境
+之前已经连接上了。
+步骤二：安装MySQL
+rpm -Uvh  http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+yum -y install mysql-community-server
+步骤三：配置MySQL
+systemctl start mysqld
+systemctl enable mysqld
+grep 'temporary password' /var/log/mysqld.log
+安全设置
+mysql_secure_installation
+步骤四：远程访问MySQL数据库
+ mysql -uroot -p
+mysql> grant all on *.* to 'dms'@'%' IDENTIFIED BY '123456'; #使用root替换dms，可设置为允许root账号远程登录。
+mysql> flush privileges;
+问题：用Navicat连接不上mysql。用了服务器id，端口号，账号，密码。都不行
